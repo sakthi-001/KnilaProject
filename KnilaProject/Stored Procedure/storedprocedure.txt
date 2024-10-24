@@ -1,0 +1,15 @@
+﻿CREATE PROCEDURE GetBooksBasedSort
+@SortName VARCHAR(50)
+AS
+BEGIN
+    IF @SortName = 'Publisher'
+    BEGIN 
+        SELECT * FROM Books 
+        ORDER BY Publisher, AuthorLastName, AuthorFirstName, Title;
+    END 
+    ELSE
+    BEGIN
+        SELECT * FROM Books 
+        ORDER BY AuthorLastName, AuthorFirstName, Title;
+    END
+END;
