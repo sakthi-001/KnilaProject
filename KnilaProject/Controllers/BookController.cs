@@ -1,4 +1,5 @@
 ﻿using KnilaProject.IRepository;
+using KnilaProject.Model.Models;
 using KnilaProject.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +21,9 @@ namespace KnilaProject.Controllers
         //Sorted by Publishers,Author(last,first) then title
         [HttpGet]
         [Route("GetAllBooks")]
-        public async Task<List<BookModel>> GetAllBooks()
+        public async Task<List<BookModels>> GetAllBooks()
         {
-            List<BookModel> lstBooks = new List<BookModel>();
+            List<BookModels> lstBooks = new List<BookModels>();
             try
             {
                 lstBooks=  await _bookRepository.GetAllBooks();
@@ -38,9 +39,9 @@ namespace KnilaProject.Controllers
         //Sorted by Author(last,first) then title
         [HttpGet]
         [Route("GetAllBooksSortByAuthor")]
-        public async Task<List<BookModel>> GetAllBooksByAuthor()
+        public async Task<List<BookModels>> GetAllBooksByAuthor()
         {
-            List<BookModel> lstBooks = new List<BookModel>();
+            List<BookModels> lstBooks = new List<BookModels>();
             try
             {
                 lstBooks = await _bookRepository.GetAllBooksByAuthor();
@@ -74,7 +75,7 @@ namespace KnilaProject.Controllers
 
         [HttpPost]
         [Route("SaveBook")]
-        public async Task<String> SaveBook(BookModel bookModel)
+        public async Task<String> SaveBook(BookModels bookModel)
         {
             var response = string.Empty;
             try
@@ -92,7 +93,7 @@ namespace KnilaProject.Controllers
 
         [HttpPost]
         [Route("SaveBulkBook")]
-        public async Task<String> SaveBulkBook(List<BookModel> lstBooks)
+        public async Task<String> SaveBulkBook(List<BookModels> lstBooks)
         {
             var response = string.Empty;
             try
@@ -109,7 +110,7 @@ namespace KnilaProject.Controllers
 
         //given Publisher based on the api 1 result otherwise given  the result based on author
         [HttpGet("GetBooksBasedSort")]
-        public async Task<List<BookModel>> GetBooksBasedSort(string sortName)
+        public async Task<List<BookModels>> GetBooksBasedSort(string sortName)
         {
             var books = await _bookRepository.GetBooksBasedSort(sortName);
             return books;

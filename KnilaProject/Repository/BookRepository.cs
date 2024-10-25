@@ -1,4 +1,5 @@
 ﻿using KnilaProject.IRepository;
+using KnilaProject.Model.Models;
 using KnilaProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,7 @@ namespace KnilaProject.Repository
         {
             _dbContext = dbContext;
         }
-        public async Task<List<BookModel>> GetAllBooks()
+        public async Task<List<BookModels>> GetAllBooks()
         {
 
             return await _dbContext.Books.OrderBy(e => e.Publisher)
@@ -21,7 +22,7 @@ namespace KnilaProject.Repository
         .ThenBy(e => e.AuthorFirstName).ThenBy(e => e.Title)
         .ToListAsync();
         }
-        public async Task<List<BookModel>> GetAllBooksByAuthor()
+        public async Task<List<BookModels>> GetAllBooksByAuthor()
         {
 
             return await _dbContext.Books
@@ -29,7 +30,7 @@ namespace KnilaProject.Repository
         .ThenBy(e => e.AuthorFirstName).ThenBy(e => e.Title)
         .ToListAsync();
         }
-        public async Task<String> SaveBooks(BookModel bookModel)
+        public async Task<String> SaveBooks(BookModels bookModel)
         {
 
             await _dbContext.Books.AddAsync(bookModel);
@@ -37,7 +38,7 @@ namespace KnilaProject.Repository
             return "Data Saved";
         }
 
-        public async Task<String> SaveBulkBook(List<BookModel> lstBooks)
+        public async Task<String> SaveBulkBook(List<BookModels> lstBooks)
         {
 
            await _dbContext.Books.AddRangeAsync(lstBooks);
@@ -50,7 +51,7 @@ namespace KnilaProject.Repository
         return await _dbContext.Books.Select(s=> s.Price).SumAsync();
     }
 
-      public  async Task<List<BookModel>> GetBooksBasedSort(string sortName)
+      public  async Task<List<BookModels>> GetBooksBasedSort(string sortName)
         {
             var books = await _dbContext.Books
            .FromSqlRaw("EXEC GetBooksBasedSort @SortName = {0}", sortName)

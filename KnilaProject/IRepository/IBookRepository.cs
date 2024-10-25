@@ -1,15 +1,16 @@
-﻿using KnilaProject.Models;
+﻿using KnilaProject.Model.Models;
+using KnilaProject.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KnilaProject.IRepository
 {
     public interface IBookRepository
     {
-       Task<List<BookModel>> GetAllBooks();
-       Task<List<BookModel>> GetAllBooksByAuthor();
+       Task<List<BookModels>> GetAllBooks();
+       Task<List<BookModels>> GetAllBooksByAuthor();
        Task<decimal> GetBookPrice();
-       Task<String> SaveBulkBook(List<BookModel> lstBooks);
-       Task<String> SaveBooks(BookModel bookModel);
-       Task<List<BookModel>> GetBooksBasedSort(string sortName);
+       Task<String> SaveBulkBook(List<BookModels> lstBooks);
+       Task<String> SaveBooks(BookModels bookModel);
+       Task<List<BookModels>> GetBooksBasedSort(string sortName);
     }
 }

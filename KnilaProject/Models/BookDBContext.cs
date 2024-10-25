@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using KnilaProject.Model.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace KnilaProject.Models
 {
@@ -8,6 +9,6 @@ namespace KnilaProject.Models
         {
 
         }
-        public DbSet<BookModel> Books { get; set; }
+        public DbSet<BookModels> Books { get; set; }
     }
 }
